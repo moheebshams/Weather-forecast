@@ -3,29 +3,23 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https://cdnjs.cloudflare.com https://kit.fontawesome.com; img-src 'self' https: data:; style-src 'self' 'unsafe-inline' https:; script-src 'self' https://kit.fontawesome.com">
     <title>Weather Forecast</title>
     <meta name="description" content="Professional weather forecast app" />
     <script src="https://cdn.tailwindcss.com"></script>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.0/css/all.min.css" integrity="sha512-DxV+EoADOkOygM4IR9yXP8Sb2qwgidEmeqAEmDKIOfPRQZOWbXCzLC6vjbZyy0vPisbH2SyW27+ddLVCN+OMzQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <!-- Updated Font Awesome to use jsDelivr which works better with GitHub Pages -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.4.0/css/all.min.css" />
     <link rel="stylesheet" href="styles.css">
   </head>
 
-  <body
-    class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen font-sans antialiased"
-  >
+  <body class="bg-gradient-to-br from-blue-50 to-blue-100 min-h-screen font-sans antialiased">
     <div class="container mx-auto px-4 py-8 max-w-6xl">
       <!-- Header -->
       <header class="mb-8 px-4 max-w-4xl mx-auto">
-        <div
-          class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4"
-        >
+        <div class="flex flex-col sm:flex-row justify-between items-center mb-6 gap-4">
           <h1 class="text-2xl font-bold text-slate-800 flex items-center">
             <i class="fas fa-cloud-sun text-blue-500 mr-2"></i> Weather Forecast
           </h1>
-          <div
-            class="flex items-center gap-2 text-gray-600 text-sm select-none"
-          >
+          <div class="flex items-center gap-2 text-gray-600 text-sm select-none">
             <span>°C</span>
             <label class="unit-toggle">
               <input type="checkbox" id="unitToggle" class="sr-only" />
@@ -35,9 +29,7 @@
           </div>
         </div>
 
-        <div
-          class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto"
-        >
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
           <input
             id="cityInput"
             type="text"
@@ -59,17 +51,11 @@
             </button>
           </div>
         </div>
-        <p
-          id="errorMessage"
-          class="text-red-500 text-center mt-2 text-sm h-5"
-        ></p>
+        <p id="errorMessage" class="text-red-500 text-center mt-2 text-sm h-5"></p>
       </header>
 
       <!-- Current Weather -->
-      <section
-        id="currentWeather"
-        class="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8 border border-white/50"
-      >
+      <section id="currentWeather" class="bg-white/80 backdrop-blur-sm rounded-xl shadow-md p-6 mb-8 border border-white/50">
         <div class="text-center py-8 text-gray-500">
           <i class="fas fa-cloud-sun text-4xl text-blue-300 mb-3"></i>
           <p>Search for a city to see weather</p>
@@ -80,22 +66,15 @@
       <h2 class="text-xl font-semibold text-slate-800 mb-4 px-2">
         7-Day Forecast
       </h2>
-      <div
-        id="forecastContainer"
-        class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-8"
-      ></div>
+      <div id="forecastContainer" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-7 gap-3 mb-8"></div>
 
       <!-- Weather Details -->
       <h2 class="text-xl font-semibold text-slate-800 mb-4 px-2">
         Weather Details
       </h2>
-      <div
-        id="weatherDetails"
-        class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"
-      ></div>
+      <div id="weatherDetails" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-3"></div>
     </div>
 
-<script src="script.js"></script>
-
+    <script src="script.js"></script>
   </body>
 </html>
