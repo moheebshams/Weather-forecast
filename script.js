@@ -141,7 +141,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const feels =
       currentUnit === "C" ? current.feelslike_c : current.feelslike_f;
 
-    // ✅ Fixed icon for GitHub Pages
     const icon = current.condition.icon.startsWith("//")
       ? "https:" + current.condition.icon
       : current.condition.icon;
@@ -154,13 +153,13 @@ document.addEventListener("DOMContentLoaded", () => {
           </h2>
           <p class="text-gray-600">
             ${new Date(location.localtime).toLocaleString("en-US", {
-              weekday: "long",
-              year: "numeric",
-              month: "short",
-              day: "numeric",
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
+      weekday: "long",
+      year: "numeric",
+      month: "short",
+      day: "numeric",
+      hour: "2-digit",
+      minute: "2-digit",
+    })}
           </p>
         </div>
         <div class="flex items-center gap-4">
@@ -198,8 +197,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const minTemp = Math.round(
           currentUnit === "C" ? day.day.mintemp_c : day.day.mintemp_f
         );
-
-        // ✅ Fixed icon for GitHub Pages
         const icon = day.day.condition.icon.startsWith("//")
           ? "https:" + day.day.condition.icon
           : day.day.condition.icon;
@@ -270,9 +267,9 @@ document.addEventListener("DOMContentLoaded", () => {
         description:
           today.totalprecip_mm > 0
             ? `${currentUnit === "C"
-                ? today.totalprecip_mm + "mm"
-                : today.totalprecip_in + "in"
-              }`
+              ? today.totalprecip_mm + "mm"
+              : today.totalprecip_in + "in"
+            }`
             : "",
       },
     ];
