@@ -3,9 +3,6 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_KEY = "1f1c02f556ae48f290d82912251108";
   const BASE_URL = "https://api.weatherapi.com/v1";
 
-  // Use a free CORS proxy so GitHub Pages can fetch data
-  const PROXY = "https://api.allorigins.win/raw?url=";
-
   // DOM Elements
   const $ = (id) => document.getElementById(id);
   const DOM = {
@@ -93,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // Weather data fetching
   async function fetchWeather(query) {
     try {
-      showSkeleton(); // Show loading skeleton
+      showSkeleton();
       const res = await fetch(
         `${BASE_URL}/forecast.json?key=${API_KEY}&q=${query}&days=7`
       );
@@ -143,7 +140,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const temp = currentUnit === "C" ? current.temp_c : current.temp_f;
     const feels =
       currentUnit === "C" ? current.feelslike_c : current.feelslike_f;
-    const icon = `https:${current.condition.icon.replace(/^\/\//, "")}`;
+
+    // ✅ Fixed icon for GitHub Pages
+    const icon = current.condition.icon.startsWith("//")
+      ? "https:" + current.condition.icon
+      : current.condition.icon;
 
     DOM.currentWeather.innerHTML = `
       <div class="flex flex-col md:flex-row justify-between items-center gap-6">
@@ -153,18 +154,17 @@ document.addEventListener("DOMContentLoaded", () => {
           </h2>
           <p class="text-gray-600">
             ${new Date(location.localtime).toLocaleString("en-US", {
-      weekday: "long",
-      year: "numeric",
-      month: "short",
-      day: "numeric",
-      hour: "2-digit",
-      minute: "2-digit",
-    })}
+              weekday: "long",
+              year: "numeric",
+              month: "short",
+              day: "numeric",
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
           </p>
         </div>
         <div class="flex items-center gap-4">
-          <img src="${icon}" alt="${current.condition.text
-      }" class="w-16 h-16" loading="lazy" />
+          <img src="${icon}" alt="${current.condition.text}" class="w-16 h-16" loading="lazy" />
           <div class="flex flex-col">
             <div class="text-5xl font-light text-gray-800">
               ${Math.round(temp)}°${currentUnit}
@@ -198,7 +198,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const minTemp = Math.round(
           currentUnit === "C" ? day.day.mintemp_c : day.day.mintemp_f
         );
-        const icon = `https:${day.day.condition.icon.replace(/^\/\//, "")}`;
+
+        // ✅ Fixed icon for GitHub Pages
+        const icon = day.day.condition.icon.startsWith("//")
+          ? "https:" + day.day.condition.icon
+          : day.day.condition.icon;
 
         return `
         <div class="bg-white/80 backdrop-blur-sm rounded-lg shadow-sm p-3 text-center border border-white/50 transition-all hover:shadow-md">
@@ -266,9 +270,9 @@ document.addEventListener("DOMContentLoaded", () => {
         description:
           today.totalprecip_mm > 0
             ? `${currentUnit === "C"
-              ? today.totalprecip_mm + "mm"
-              : today.totalprecip_in + "in"
-            }`
+                ? today.totalprecip_mm + "mm"
+                : today.totalprecip_in + "in"
+              }`
             : "",
       },
     ];
@@ -322,7 +326,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // UI helper functions
   function showSkeleton() {
-    // Current weather skeleton
     DOM.currentWeather.innerHTML = `
       <div class="animate-pulse">
         <div class="h-6 bg-gray-300 rounded w-1/3 mb-4"></div>
@@ -337,7 +340,6 @@ document.addEventListener("DOMContentLoaded", () => {
       </div>
     `;
 
-    // Forecast skeleton
     DOM.forecastContainer.innerHTML = Array(7)
       .fill(
         `
@@ -351,7 +353,6 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .join("");
 
-    // Weather details skeleton
     DOM.weatherDetails.innerHTML = Array(5)
       .fill(
         `
