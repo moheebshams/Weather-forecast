@@ -3,6 +3,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const API_KEY = "1f1c02f556ae48f290d82912251108";
   const BASE_URL = "https://api.weatherapi.com/v1";
 
+  // Use a free CORS proxy so GitHub Pages can fetch data
+  const PROXY = "https://api.allorigins.win/raw?url=";
+
   // DOM Elements
   const $ = (id) => document.getElementById(id);
   const DOM = {
